@@ -51,8 +51,8 @@ class Scoreboard extends React.Component {
         <h2>Scoreboard!</h2>
 
         <div className="display">
-          <p>Balls: {this.state.balls}</p>
-          <p>Strikes: {this.state.strikes}</p>
+          <p data-testid="ball-count">Balls: {this.state.balls}</p>
+          <p data-testid="strike-count">Strikes: {this.state.strikes}</p>
         </div>
 
         <div className="dashboard">

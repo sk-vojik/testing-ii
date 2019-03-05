@@ -6,19 +6,42 @@ import Scoreboard from './Scoreboard';
 
 describe('<Scoreboard />', () => {
   it('should start off with 0 balls at the beginning of an at bat', () => {
-
     const { getByText } = render(<Scoreboard />);
     
     expect(getByText(/balls: 0/i)).toBeInTheDocument();
   })
 
   it('should start off with 0 strikes at the beginning of an at bat', () => {
-
     const { getByText } = render(<Scoreboard />);
     
     expect(getByText(/strikes: 0/i)).toBeInTheDocument();
   })
 
+  it('should never have more than 4 balls', () => {
+    const { getByText, getByTestId } = render(<Scoreboard />);
+
+    const balls = getByTestId('ball-count');
+    const ballButton = getByText(/ball/i);
+    fireEvent.click(ballButton)
+
+    expect(balls).toHaveTextContent(0);
+  })
+
+  it('should never have more than 3 strikes', () => {
+    const { getByText, getByTestId } = render(<Scoreboard />);
+
+    const strikes = getByTestId('strike-count');
+    const strikebutton = getByText(/strike/i);
+    fireEvent.click(strikebutton)
+
+    expect(strikes).toHaveTextContent(0);
+  })
+
+  // it('should never have more than 3 strikes', () => {
+  //   const { getByText } = render(<Scoreboard />);
+
+  //   expect(getByText(/strikes: 4/i)).not.toBeInTheDocument();
+  // })
   
   
 });
