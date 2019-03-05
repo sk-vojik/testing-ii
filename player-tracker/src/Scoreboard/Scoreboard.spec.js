@@ -28,20 +28,27 @@ describe('<Scoreboard />', () => {
   })
 
   it('should never have more than 3 strikes', () => {
+    
     const { getByText, getByTestId } = render(<Scoreboard />);
 
     const strikes = getByTestId('strike-count');
     const strikebutton = getByText(/strike/i);
-    fireEvent.click(strikebutton)
+    fireEvent.click(strikebutton);
+    
+   
 
     expect(strikes).toHaveTextContent(0);
   })
 
-  // it('should never have more than 3 strikes', () => {
-  //   const { getByText } = render(<Scoreboard />);
+  it('should never go to three strikes via foul ball button', () => {
+    const { getByText, getByTestId } = render(<Scoreboard />);
 
-  //   expect(getByText(/strikes: 4/i)).not.toBeInTheDocument();
-  // })
-  
-  
+    const strikes = getByTestId('strike-count');
+    const foulbutton = getByText(/foul/i);
+    fireEvent.click(foulbutton)
+
+    expect(strikes).toHaveTextContent(0);
+  })
+
+    
 });
